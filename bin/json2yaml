@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'yaml'
+
+src, dest = *ARGV
+dest ||= File.basename(src, File.extname(src)) + '.yaml'
+
+begin
+
+  File.open(dest, 'w') do |f|
+    f << JSON.parse(File.open(src).read).to_yaml
+  end
+
+rescue Exception => e
+  puts "Check yourself."
+  puts e
+end
