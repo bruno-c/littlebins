@@ -3,7 +3,14 @@ require 'json'
 require 'yaml'
 
 src, dest = *ARGV
+
+if src.nil?
+  puts "You need an input filename dummy"
+  exit 0
+end
+
 dest ||= File.basename(src, File.extname(src)) + '.json'
+
 
 begin
 

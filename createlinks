@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+# create symbolic links for everything in bin to /usr/local/bin
+require 'pp'
+require 'fileutils'
+
+Dir["bin/*"].map { |f| File.expand_path(f) }.each do |cmd|
+  puts "Linking #{cmd} to /usr/bin/#{File.basename(cmd)}"
+  FileUtils.ln_sf cmd, "/usr/local/bin/#{File.basename(cmd)}"
+end
